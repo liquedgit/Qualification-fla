@@ -1,7 +1,6 @@
 package Pages;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,26 +10,10 @@ import Model.Score;
 public class MainMenuPage extends BasePage {
 	private Scanner sc;
 	private Helper helper;
-	private ArrayList<Score> scoreList;
+	
 	public MainMenuPage() {
 		sc = new Scanner(System.in);
 		helper = new Helper();
-		
-		File myFile = new File("highscore.txt");
-		Scanner fileSc;
-		try {
-			fileSc = new Scanner(myFile);
-			while(fileSc.hasNextLine()) {
-				String data = fileSc.nextLine();
-				String[] arrOfStr = data.split("#",2);
-				Score score= new Score(arrOfStr[0], Integer.parseInt(arrOfStr[1]));
-				scoreList.add(score);
-			}
-			fileSc.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 	}
 	
@@ -50,9 +33,9 @@ public class MainMenuPage extends BasePage {
 			choice = sc.nextInt();sc.nextLine();
 		}while(choice < 1 || choice > 3);
 		if(choice == 1) {
-			
+			new PlayNewRestaurantPage().ShowPage();
 		}else if(choice == 2) {
-			new Highscore(scoreList).ShowPage();
+			new HighscorePage().ShowPage();
 		}
 	}
 }

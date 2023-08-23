@@ -1,6 +1,6 @@
 package Model;
 
-public class Score {
+public class Score implements Comparable<Score> {
 	private String restaurantName;
 	private Integer score;
 	public String getRestaurantName() {
@@ -19,6 +19,11 @@ public class Score {
 		super();
 		this.restaurantName = restaurantName;
 		this.score = score;
+	}
+	@Override
+	public int compareTo(Score o) {
+		// TODO Auto-generated method stub
+		return o.score - this.score;
 	}
 	
 }
