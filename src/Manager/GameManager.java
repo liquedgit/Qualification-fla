@@ -1,5 +1,8 @@
 package Manager;
 
+import java.util.ArrayList;
+
+import Model.Customer;
 import Model.Restaurant;
 
 public class GameManager {
@@ -32,16 +35,26 @@ public class GameManager {
 	}
 
 	private GameManager() {
-		this.activeRestaurant = new Restaurant();
 		this.isRunning = true;
 		this.isEnded = false;
 	}
 	
-	public static GameManager GetInstance() {
+	public synchronized static GameManager GetInstance() {
 		if(instance == null) {
-			instance = new GameManager();
+			synchronized (GameManager.class) {
+				if(instance == null) {
+					instance = new GameManager();
+					
+				}
+			}
 		}
 		return instance;
 	}
+	
+	public void initializeRestaurant() {
+        if (this.activeRestaurant == null) {
+            this.activeRestaurant = new Restaurant();
+        }
+    }
 	
 }

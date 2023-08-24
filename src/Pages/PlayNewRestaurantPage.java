@@ -3,6 +3,7 @@ package Pages;
 import java.util.Scanner;
 
 import Manager.GameManager;
+import Observer.CustomerGenerator;
 
 public class PlayNewRestaurantPage extends BasePage{
 	private Scanner sc;
@@ -25,7 +26,10 @@ public class PlayNewRestaurantPage extends BasePage{
 		}while(restaurantName.length() < 3 || restaurantName.length() > 15);
 		
 		this.instance = GameManager.GetInstance();
+		instance.initializeRestaurant();
 		instance.getActiveRestaurant().setRestaurantName(restaurantName);
+		CustomerGenerator cg = new CustomerGenerator();
+		instance.getActiveRestaurant().addSubscriber(cg);
 		new PlayPage().ShowPage();
 	}
 
