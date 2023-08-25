@@ -7,7 +7,6 @@ public class CustomerOrderServerState extends CustomerBaseState {
 	@Override
 	public void updateState(CustomerStateManager customer) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

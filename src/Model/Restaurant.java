@@ -78,8 +78,8 @@ public class Restaurant implements Subject {
 		return score;
 	}
 
-	public void setScore(Integer score) {
-		this.score = score;
+	public void minusScoreCustomerOut() {
+		this.score -= 300;
 	}
 	
 	public void checkEmptySeat() {

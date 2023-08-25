@@ -11,12 +11,20 @@ import State.ServerState.ServerStateManager;
 public class RestaurantMediator {
 	private Restaurant resto;
 	private Vector<Customer> customerIdleQueue;
-
 	public RestaurantMediator(Restaurant resto) {
 		this.resto = resto;
 		this.customerIdleQueue = new Vector<>();
 	}
-
+	
+	public void customerOutofTolerance(Customer customer) {
+		removeInactiveCustomer(customer);
+		resto.minusScoreCustomerOut();
+	}
+	
+	private void removeInactiveCustomer(Customer customer) {
+		resto.getCustomers().remove(customer.getName());
+	}
+	
 	public void addCustomertoIdleQueue(Customer customer) {
 		customerIdleQueue.add(customer);
 	}

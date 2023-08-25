@@ -8,6 +8,15 @@ public class Customer{
 	private String name;
 	private Integer tolerance;
 	private CustomerStateManager currState;
+	private volatile Boolean shouldStop;
+
+	public Boolean getShouldStop() {
+		return shouldStop;
+	}
+
+	public void setShouldStop(Boolean shouldStop) {
+		this.shouldStop = shouldStop;
+	}
 
 	public CustomerStateManager getCurrState() {
 		return currState;
@@ -26,6 +35,7 @@ public class Customer{
 		this.currState = new CustomerStateManager(mediator, this);
 		this.name = name;
 		this.tolerance = tolerance;
+		this.shouldStop = false;
 	}
 	
 	
@@ -38,6 +48,11 @@ public class Customer{
 	public Integer getTolerance() {
 		return tolerance;
 	}
+	
+	public void decreaseTolerance() {
+		this.tolerance--;
+	}
+	
 	public void setTolerance(Integer tolerance) {
 		this.tolerance = tolerance;
 	}

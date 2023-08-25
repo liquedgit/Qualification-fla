@@ -49,6 +49,12 @@ public class CustomerStateManager {
 	}
 
 	public void Update() {
+		
+		if(this.customer.getTolerance() <= 0) {
+			mediator.customerOutofTolerance(customer);
+			this.customer.setShouldStop(true);
+		}
+		
 		this.currState.updateState(this);
 	}
 
