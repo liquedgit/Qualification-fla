@@ -11,7 +11,8 @@ public class ServerTakeOrderState extends ServerBaseState{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		server.mediator.customerWaitFood(server.getCustomer());
+		server.changeState(server.waitCookState);
 	}
 
 	@Override

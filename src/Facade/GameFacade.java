@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import EmployeeFactory.Employee;
 import Manager.GameManager;
+import Model.Chef;
 import Model.Customer;
 import Model.Server;
 
@@ -63,6 +64,16 @@ public class GameFacade {
 						Server server = (Server)val;
 						System.out.println(server.getName()+ ", "+server.getCurrState().getCurrState().getCurrentState());
 					}
+				}
+				System.out.println("Chef");
+				for (Map.Entry<String, Employee> entry : instance.getActiveRestaurant().getEmployee().entrySet()) {
+					String key = entry.getKey();
+					Employee val = entry.getValue();
+					if(val instanceof Chef) {
+						Chef chef = (Chef)val;
+						System.out.println(chef.getName()+", "+chef.getCurrState().getCurrState().getCurrentState());
+					}
+					
 				}
 				try {
 					Thread.sleep(1000);

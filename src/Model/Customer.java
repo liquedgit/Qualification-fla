@@ -25,10 +25,6 @@ public class Customer{
 	public void setCurrState(CustomerStateManager currState) {
 		this.currState = currState;
 	}
-	
-	public void setInteractWith(Employee employee) {
-		this.currState.setInteractingWith(employee);
-	}
 
 
 	public Customer(String name, Integer tolerance, RestaurantMediator mediator) {

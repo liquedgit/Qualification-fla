@@ -11,7 +11,7 @@ import Observer.Subject;
 
 public class Restaurant implements Subject {
 	private Integer chair;
-	private HashMap<String,Employee> employee;
+	private HashMap<String, Employee> employee;
 	private Integer money;
 	private Integer score;
 	private String restaurantName;
@@ -19,21 +19,24 @@ public class Restaurant implements Subject {
 	private HashMap<String, Customer> customers;
 	private RestaurantMediator mediator;
 
-	
 	public RestaurantMediator getMediator() {
 		return mediator;
 	}
-
-
 
 	public void setMediator(RestaurantMediator mediator) {
 		this.mediator = mediator;
 	}
 
+	public void gainScore(int score) {
+		this.score += score;
+	}
 
+	public void gainMoney(int money) {
+		this.money += money;
+	}
 
 	public Restaurant() {
-		// TODO Auto-generated constructor 
+		// TODO Auto-generated constructor
 		this.mediator = new RestaurantMediator(this);
 		this.subscriber = new ArrayList<>();
 		this.customers = new HashMap<>();
@@ -45,9 +48,7 @@ public class Restaurant implements Subject {
 		this.money = 1300;
 		this.score = 0;
 	}
-	
-	
-	
+
 	public String getRestaurantName() {
 		return restaurantName;
 	}
@@ -64,8 +65,6 @@ public class Restaurant implements Subject {
 		this.chair = chair;
 	}
 
-	
-
 	public Integer getMoney() {
 		return money;
 	}
@@ -81,10 +80,10 @@ public class Restaurant implements Subject {
 	public void minusScoreCustomerOut() {
 		this.score -= 300;
 	}
-	
+
 	public void checkEmptySeat() {
-		if(customers.size() < this.chair) {
-			notifySubscriber(customers.size()-this.chair);
+		if (customers.size() < this.chair) {
+			notifySubscriber(customers.size() - this.chair);
 		}
 	}
 
@@ -92,25 +91,28 @@ public class Restaurant implements Subject {
 		return employee;
 	}
 
-
-
 	public void setEmployee(HashMap<String, Employee> employee) {
 		this.employee = employee;
 	}
-
-
 
 	public HashMap<String, Customer> getCustomers() {
 		return customers;
 	}
 
-
-
-	public void setCustomers(HashMap<String, Customer> customers) {
-		this.customers = customers;
+	public void removeCustomer(String name) {
+		notifySubscriber(customers.size() - this.chair);
+		customers.remove(name);
 	}
 
+	public void addCustomer(String name, Customer customer) {
+		notifySubscriber(customers.size() - this.chair);
+		customers.put(name, customer);
+	}
 
+	public void setCustomers(HashMap<String, Customer> customers) {
+
+		this.customers = customers;
+	}
 
 	@Override
 	public void notifySubscriber(int emptySeat) {
@@ -120,15 +122,11 @@ public class Restaurant implements Subject {
 		}
 	}
 
-
-
 	@Override
 	public void addSubscriber(Observer observer) {
 		// TODO Auto-generated method stub
 		subscriber.add(observer);
 	}
-
-
 
 	@Override
 	public void removeSubscriber(Observer observer) {
@@ -136,6 +134,4 @@ public class Restaurant implements Subject {
 		subscriber.remove(observer);
 	}
 
-	
-	
 }

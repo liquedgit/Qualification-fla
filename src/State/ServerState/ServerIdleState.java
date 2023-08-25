@@ -9,6 +9,10 @@ public class ServerIdleState extends ServerBaseState{
 		if(res) {
 			server.changeState(server.takeOrderState);
 		}
+		
+		if(server.mediator.checkDoneChef(server.getServer())){
+			server.changeState(server.bringOrderState);
+		}
 	}
 
 	@Override

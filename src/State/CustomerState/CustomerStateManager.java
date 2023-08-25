@@ -2,6 +2,7 @@ package State.CustomerState;
 
 import EmployeeFactory.Employee;
 import Mediator.RestaurantMediator;
+import Model.Chef;
 import Model.Customer;
 import Model.Server;
 
@@ -14,13 +15,53 @@ public class CustomerStateManager {
 
 	protected Server server;
 	protected CustomerOrderState orderState;
+	public Server getServer() {
+		return server;
+	}
+
+	public CustomerOrderState getOrderState() {
+		return orderState;
+	}
+
+	public CustomerOrderServerState getOrderServerState() {
+		return orderServerState;
+	}
+
+	public CustomerWaitState getWaitState() {
+		return waitState;
+	}
+
+	public CustomerWaitChefState getWaitChefState() {
+		return waitChefState;
+	}
+
+	public CustomerWaitServerState getWaitServerState() {
+		return waitServerState;
+	}
+
+	public CustomerEatState getEatState() {
+		return eatState;
+	}
+
+	public RestaurantMediator getMediator() {
+		return mediator;
+	}
+
 	protected CustomerOrderServerState orderServerState;
 	protected CustomerWaitState waitState;
 	protected CustomerWaitChefState waitChefState;
 	protected CustomerWaitServerState waitServerState;
 	protected CustomerEatState eatState;
-	private Employee interactingWith;
 	private Customer customer;
+	private Chef chef;
+
+	public Chef getChef() {
+		return chef;
+	}
+
+	public void setChef(Chef chef) {
+		this.chef = chef;
+	}
 
 	public Customer getCustomer() {
 		return customer;
@@ -38,7 +79,8 @@ public class CustomerStateManager {
 		this.waitServerState = new CustomerWaitServerState();
 		this.eatState = new CustomerEatState();
 		this.currState = this.orderState;
-		setInteractingWith(null);
+		this.server = null;
+		this.chef = null;
 		this.currState.startState(this);
 	}
 
@@ -58,12 +100,9 @@ public class CustomerStateManager {
 		this.currState.updateState(this);
 	}
 
-	public Employee getInteractingWith() {
-		return interactingWith;
+	public void setServer(Server server) {
+		this.server = server;
 	}
 
-	public void setInteractingWith(Employee interactingWith) {
-		this.interactingWith = interactingWith;
-	}
 
 }

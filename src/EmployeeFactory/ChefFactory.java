@@ -13,7 +13,7 @@ public class ChefFactory extends EmployeeFactory{
 	@Override
 	public Employee createEmployee(String name) {
 		// TODO Auto-generated method stub
-		return new Chef(name, 1, 1);
+		return new Chef(name, 1, 1, mediator);
 	}
 
 

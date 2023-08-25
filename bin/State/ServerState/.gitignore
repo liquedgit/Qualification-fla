@@ -1,7 +1,0 @@
-/ServerBaseState.class
-/ServerBringOrderState.class
-/ServerIdleState.class
-/ServerServingFoodState.class
-/ServerStateManager.class
-/ServerTakeOrderState.class
-/ServerWaitCookState.class

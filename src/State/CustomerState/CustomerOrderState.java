@@ -4,7 +4,7 @@ public class CustomerOrderState extends CustomerBaseState{
 	@Override
 	public void updateState(CustomerStateManager customer) {
 		// TODO Auto-generated method stub
-		if(customer.getInteractingWith() != null) {
+		if(customer.getServer() != null) {
 			customer.changeState(customer.orderServerState);
 			return;
 		}

@@ -12,7 +12,9 @@ import EmployeeFactory.Employee;
 import EmployeeFactory.EmployeeFactory;
 import EmployeeFactory.ServerFactory;
 import Mediator.RestaurantMediator;
+import Model.Chef;
 import Model.Server;
+import Multithread.ChefThread;
 import Multithread.ServerThread;
 
 public class EmployeeGenerator {
@@ -57,7 +59,7 @@ public class EmployeeGenerator {
 			String initial = generateInitial(employee);
 			Employee chef = chefFactory.createEmployee(initial);
 			employee.put(initial, chef);
-			
+			new Thread(new ChefThread((Chef)chef)).start();
 		}
 	}
 	

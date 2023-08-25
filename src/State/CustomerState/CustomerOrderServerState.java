@@ -18,7 +18,7 @@ public class CustomerOrderServerState extends CustomerBaseState {
 	@Override
 	public String getCurrentState() {
 		// TODO Auto-generated method stub
-		return "Order <"+this.customer.getInteractingWith().getName()+">";
+		return "Order <"+this.customer.getServer().getName()+">";
 	}
 
 	

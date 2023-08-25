@@ -28,7 +28,7 @@ public class CustomerGenerator implements Observer{
 	
 	public void generateCustomer(HashMap<String, Customer> customers,int emptySeats, RestaurantMediator mediator) {
 		Integer number = random.nextInt(100);
-		if(number > 25) {
+		if(number <= 25) {
 			String initial = generateInitial(customers);
 			Customer customer = new Customer(initial, 10, mediator);
 			customers.put(initial, customer);
